@@ -12,7 +12,8 @@ var config = {
     //     publicPath: '/'
     // },
     entry: {
-        bundle: ['./src/app' ],
+        app: ['./src/app' ],
+        app1: ['./src/app1' ],
         vendors: ['react', 'redux', 'react-dom', 'react-router']
     },
     output: {
@@ -34,7 +35,10 @@ var config = {
 			template: __dirname + '/index.html',
             filename: __dirname + '/dist/index.html', // 生成的html存放路径，相对于 path
 		}),
-        
+        new HtmlWebpackPlugin({
+			template: __dirname + '/index1.html',
+            filename: __dirname + '/dist/index1.html', // 生成的html存放路径，相对于 path
+		}),
     ]
     
 }

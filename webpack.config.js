@@ -11,13 +11,20 @@ var config = {
         port: 2001,//设置默认监听端口，如果省略，默认为"8080"
         publicPath: '/'
     },
-    entry: [
-        'webpack-dev-server/client?http://localhost:2001',
-        'webpack/hot/dev-server', // 开启热替换
-        path.resolve(__dirname, './src/app.js'),
-    ],
+    entry: {
+        app: [
+            'webpack-dev-server/client?http://localhost:2001',
+            'webpack/hot/dev-server', // 开启热替换
+            path.resolve(__dirname, './src/app.js'),
+        ],
+        app1: [
+            'webpack-dev-server/client?http://localhost:2001',
+            'webpack/hot/dev-server', // 开启热替换
+            path.resolve(__dirname, './src/app1.js'),
+        ],
+    },
     output: {
-        filename: 'bundle.js',
+        filename: '[name].js',
         // path: __dirname +'/dist'
         path: path.join(__dirname, './dist'),
         publicPath: '/' // 对于热替换（HMR）是必须的，让webpack知道在哪里载入热更新的模块（chunk）
@@ -33,6 +40,10 @@ var config = {
         new HtmlWebpackPlugin({
 			template: __dirname + '/index.html',
             filename: __dirname + '/dist/index.html', // 生成的html存放路径，相对于 path
+        }),
+        new HtmlWebpackPlugin({
+			template: __dirname + '/index1.html',
+            filename: __dirname + '/dist/index1.html', // 生成的html存放路径，相对于 path
 		}),
         // 开启热替换
         new webpack.HotModuleReplacementPlugin()
